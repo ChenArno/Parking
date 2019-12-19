@@ -7,7 +7,6 @@
  * @LastEditTime : 2019-12-19 13:04:30
  */
 const path = require('path')
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -46,16 +45,16 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
       },
-      {
-        test: /\.module\.less$/,
-        loader: ExtractTextPlugin.extract(
-          'css?sourceMap&modules&localIdentName=[local]___[hash:base64:5]!!' +
-            'postcss!' +
-            `less-loader?{"sourceMap":true,"modifyVars":${JSON.stringify(
-              theme
-            )}}`
-        )
-      },
+      // {
+      //   test: /\.module\.less$/,
+      //   loader: ExtractTextPlugin.extract(
+      //     'css?sourceMap&modules&localIdentName=[local]___[hash:base64:5]!!' +
+      //       'postcss!' +
+      //       `less-loader?{"sourceMap":true,"modifyVars":${JSON.stringify(
+      //         theme
+      //       )}}`
+      //   )
+      // },
       {
         test: /\.(sass|scss)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
