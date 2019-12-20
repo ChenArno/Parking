@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-19 15:36:35
+ * @LastEditTime : 2019-12-20 10:11:44
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -17,7 +17,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = merge(common, {
+const webpackProdConfig = merge(common, {
   mode: 'production',
   output: {
     filename: 'js/[name].[chunkhash:8].bundle.js'
@@ -42,9 +42,13 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
-      chunkFilename: 'css/[id].[hash].css'
+      chunkFilename: 'css/[id].[hash].css',
+      ignoreOrder: false
     })
   ],
+  // externals: {
+  //   antd: 'antd'
+  // },
   optimization: {
     minimizer: [
       new UglifyJsPlugin(),
@@ -89,6 +93,8 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/,
+        // 解决mini压缩css时打包错误的问题，
+        exclude: [/node_modules\/.*antd/],
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
       {
@@ -96,8 +102,8 @@ module.exports = merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'less-loader',
-          'postcss-loader'
+          'postcss-loader',
+          'less-loader'
         ]
       },
       {
@@ -105,10 +111,12 @@ module.exports = merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader',
-          'postcss-loader'
+          'postcss-loader',
+          'sass-loader'
         ]
       }
     ]
   }
 })
+
+module.exports = webpackProdConfig

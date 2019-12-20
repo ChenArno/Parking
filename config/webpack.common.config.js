@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-19 13:04:30
+ * @LastEditTime : 2019-12-20 10:11:06
  */
 const path = require('path')
 
@@ -12,11 +12,25 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
+const vendors = [
+  'antd',
+  'react-router-dom'
+  // 'axios',
+  // 'nprogress',
+  // 'react',
+  // 'react-dom',
+  // 'react-loadable',
+  // 'react-redux',
+  // 'react-router',
+  // 'redux'
+]
+
 module.exports = {
   entry: {
     index: './src/index.js',
     // 这部分不变的代码单独打包
     framework: ['react', 'react-dom']
+    // vendor: vendors
   },
   output: {
     filename: 'js/bundle.js',
@@ -27,8 +41,11 @@ module.exports = {
     alias: {
       '@': resolve('src'), // 这样配置后 @ 可以指向 src 目录
       views: resolve('src/views')
-    }
+    },
+    // 省略后缀名
+    extensions: ['.js', '.jsx', '.json']
   },
+  // 源错误检查
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
@@ -43,18 +60,15 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+          { loader: 'less-loader' }
+        ]
       },
-      // {
-      //   test: /\.module\.less$/,
-      //   loader: ExtractTextPlugin.extract(
-      //     'css?sourceMap&modules&localIdentName=[local]___[hash:base64:5]!!' +
-      //       'postcss!' +
-      //       `less-loader?{"sourceMap":true,"modifyVars":${JSON.stringify(
-      //         theme
-      //       )}}`
-      //   )
-      // },
       {
         test: /\.(sass|scss)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']

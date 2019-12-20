@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import List from '../list'
-// import { Button } from 'antd'
+import { Button } from 'antd'
 
 export default class Home extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class Home extends Component {
       <div className="App">
         <h1> weclome {this.props.name} </h1> {/* <img src={background} /> */}{' '}
         {console.log('ccccccc')} <List />
-        {/* <Button type="primary" onClick={() => console.log('ssss')}>
+        <Button type="primary" onClick={() => console.log('ssss')}>
           Primary
         </Button>
         <Button
@@ -17,7 +17,7 @@ export default class Home extends Component {
           onClick={() => this.props.history.push('detail')}
         >
           跳转
-        </Button> */}
+        </Button>
       </div>
     )
   }
