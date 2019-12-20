@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 10:11:44
+ * @LastEditTime : 2019-12-20 10:40:48
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -23,6 +23,9 @@ const webpackProdConfig = merge(common, {
     filename: 'js/[name].[chunkhash:8].bundle.js'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('./prod.env')
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       // public/index.html无论与要用的template是不是在一个目录，都是从根路径开始查找

@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 09:14:02
+ * @LastEditTime : 2019-12-20 10:59:53
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -31,6 +31,9 @@ const webpackDevConfig = merge(common, {
     overlay: true
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('./dev.env')
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       inject: 'body',
