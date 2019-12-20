@@ -63,5 +63,5 @@
     "react-router-dom": "^5.1.2",
     "typescript": "^3.7.3"
   },
-  "theme": "./src/assets/css/theme.js"
+  "theme": "./config/theme.js"
 }
