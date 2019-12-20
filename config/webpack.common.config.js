@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 11:21:24
+ * @LastEditTime : 2019-12-20 15:22:13
  */
 const path = require('path')
 const theme = require('./getTheme')()
@@ -29,7 +29,7 @@ const vendors = [
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: './src/index.tsx',
     // 这部分不变的代码单独打包
     framework: ['react', 'react-dom']
     // vendor: vendors
@@ -45,7 +45,7 @@ module.exports = {
       views: resolve('src/views')
     },
     // 省略后缀名
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json', 'ts', 'tsx']
   },
   // 源错误检查
   devtool: 'cheap-module-eval-source-map',
@@ -69,6 +69,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/
       },
       {
