@@ -23,7 +23,8 @@
 			"import",
 			{
 				"libraryName": "antd",
-				"style": "css"
+				// "style": "css"
+				"style": true // 自定义主题
 			}
 		]
 	]

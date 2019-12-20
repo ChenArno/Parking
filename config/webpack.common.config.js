@@ -4,9 +4,10 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 10:11:06
+ * @LastEditTime : 2019-12-20 10:23:13
  */
 const path = require('path')
+const theme = require('./getTheme')()
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -47,6 +48,16 @@ module.exports = {
   },
   // 源错误检查
   devtool: 'cheap-module-eval-source-map',
+  // WebPack 警告WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).解决
+  performance: {
+    hints: 'warning', // 枚举
+    maxAssetSize: 30000000, // 整数类型（以字节为单位）
+    maxEntrypointSize: 50000000, // 整数类型（以字节为单位）
+    assetFilter: function(assetFilename) {
+      // 提供资源文件名的断言函数
+      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
+    }
+  },
   module: {
     rules: [
       {
@@ -66,7 +77,15 @@ module.exports = {
           },
           { loader: 'css-loader' },
           { loader: 'postcss-loader' },
-          { loader: 'less-loader' }
+          {
+            loader: 'less-loader',
+            // 自定义主题
+            options: {
+              sourceMap: true,
+              modifyVars: theme,
+              javascriptEnabled: true
+            }
+          }
         ]
       },
       {
