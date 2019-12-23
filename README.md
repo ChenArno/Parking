@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-13 09:44:05
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-19 13:30:59
+ * @LastEditTime : 2019-12-23 10:41:05
  -->
 
 ### 基于 webpack 构建 react 项目
@@ -18,3 +18,7 @@ wrt-cli+antd+react-route-dom
 .bezierEasingMixin();Inline JavaScript is not enabled. Is it set in your options?
 ```
 此时检查package.json中看看less的版本是否是3.x, 如果时降为less@2.7.3
+
+## 按需引入antd的问题
+module commonjs
+       ESNext

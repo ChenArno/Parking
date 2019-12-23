@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 16:18:27
+ * @LastEditTime : 2019-12-23 10:37:51
  */
 const path = require('path')
 const theme = require('./getTheme')()
@@ -67,13 +67,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        use: ['babel-loader', 'ts-loader'],
+        test: /\.(ts|tsx|js|jsx)$/,
+        loader: 'babel-loader!ts-loader',
         exclude: /node_modules/
       },
       {
