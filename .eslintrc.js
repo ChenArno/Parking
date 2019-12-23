@@ -64,6 +64,8 @@ module.exports = {
       experimentalObjectRestSpread: true
     }
   },
+  plugins: ['react', 'babel'],
+  // eslint-import-resolver-webpack 别名校验配置
   settings: {
     'import/resolver': {
       webpack: {

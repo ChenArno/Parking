@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 
-export default class Detail extends Component {
+export default class Detail extends React.Component {
   render() {
     return <div> detail </div>
   }
