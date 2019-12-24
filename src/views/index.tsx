@@ -1,25 +1,25 @@
 import * as React from 'react'
 import { Button, Icon, Switch } from 'antd'
 
-export default class Home extends React.Component {
-  // state = {
-  //   disabled: false
-  // }
-  // handleDisabledChange = (disabled: boolean) => {
-  //   this.setState({ disabled })
-  // }
+export default class Home extends React.Component<any, any> {
+  state = {
+    disabled: false
+  }
+  handleDisabledChange = (disabled: boolean) => {
+    this.setState({ disabled })
+    console.log(`${disabled}`)
+  }
   render() {
-    // const { disabled } = this.state
+    const { disabled } = this.state
     return (
       <div>
         {' '}
         <Icon type="link" />
-        {/* <Switch
+        <Switch
           size="small"
           checked={disabled}
           onChange={this.handleDisabledChange}
-        /> */}
-        <Switch defaultChecked={false} onChange={onChange} />
+        />
         home
         <Button type="primary" onClick={() => console.log('ssss')}>
           Primary
@@ -33,8 +33,4 @@ export default class Home extends React.Component {
       </div>
     )
   }
-}
-
-function onChange(checked: boolean) {
-  console.log(`switch to ${checked}`)
 }

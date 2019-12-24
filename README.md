@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-13 09:44:05
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-23 10:45:17
+ * @LastEditTime : 2019-12-23 14:25:59
  -->
 
 ### 基于 webpack 构建 react 项目
@@ -23,3 +23,5 @@ wrt-cli+antd+react-route-dom
 tsconfig,json文件配置
 module commonjs
        ESNext
+
+## javascript.validate
