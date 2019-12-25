@@ -2,11 +2,16 @@ import * as React from 'react'
 import { Layout } from 'antd'
 import { Button, Icon, Switch } from 'antd'
 import './index.less'
-import HeadView from '@/views/HeadView/index.tsx'
+import LayHead from '@/views/layHead/index.tsx'
 import MenuView from '@/views/menu/index.tsx'
-const { Sider, Content } = Layout
+import { TestCom } from '@/components/index.tsx'
+const { Content } = Layout
 
-export default class Home extends React.Component<any, any> {
+interface HomeState {
+  disabled?: boolean
+}
+
+export default class Home extends React.Component<any, HomeState> {
   state = {
     disabled: false
   }
@@ -16,14 +21,15 @@ export default class Home extends React.Component<any, any> {
   }
   render() {
     const { disabled } = this.state
+    const Template = (params: any) => {
+      return <div>{params.name}</div>
+    }
     return (
       <div className="cont">
         <Layout className="lay-cont">
-          <HeadView />
+          <LayHead />
           <Layout>
-            <Sider>
-              <MenuView />
-            </Sider>
+            <MenuView name="sss" />
             <Content>
               <Icon type="link" />
               <Switch
@@ -41,6 +47,7 @@ export default class Home extends React.Component<any, any> {
               >
                 跳转
               </Button>{' '}
+              <TestCom template={Template}></TestCom>
             </Content>
           </Layout>
         </Layout>
