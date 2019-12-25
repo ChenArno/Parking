@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-24 10:04:53
+ * @LastEditTime : 2019-12-24 11:26:25
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -26,7 +26,7 @@ const webpackDevConfig = merge(common, {
     open: true,
     host: 'localhost',
     port: PORT,
-    compress: true,
+    compress: true, //一切服务都启用gzip 压缩
     hot: true,
     // 如果使用webpack-dev-server，需要设为true，禁止显示devServer的console信息
     quiet: true,
