@@ -1,20 +1,16 @@
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import Detail from 'views/detail.tsx'
-import Home from 'views/index.tsx'
-import Area from 'views/area/index.tsx'
-import Parking from 'views/parking/index.tsx'
-import Charge from 'views/charge/index.tsx'
-import User from 'views/user/index.tsx'
 import * as React from 'react'
+import routeConfig from './config.ts'
 
 const BasicRoute = () => (
   <HashRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/area" component={Area} />
-      <Route exact path="/parking" component={Parking} />
-      <Route exact path="/charge" component={Charge} />
-      <Route exact path="/user" component={User} />
+      <Route exact path="/" component={routeConfig.area} />
+      <Route exact path="/pages/area" component={routeConfig.area} />
+      <Route exact path="/pages/parking" component={routeConfig.parking} />
+      <Route exact path="/pages/charge" component={routeConfig.charge} />
+      <Route exact path="/pages/user" component={routeConfig.user} />
       <Route exact path="/detail" component={Detail} />
     </Switch>
   </HashRouter>

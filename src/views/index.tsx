@@ -10,7 +10,11 @@ const { Content } = Layout
 interface HomeState {
   disabled?: boolean
 }
-
+// let screenHeight =
+//   window.innerHeight ||
+//   document.documentElement.clientHeight ||
+//   document.body.clientHeight
+  
 export default class Home extends React.Component<any, HomeState> {
   state = {
     disabled: false
