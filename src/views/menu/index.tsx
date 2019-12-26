@@ -59,7 +59,7 @@ class MenuView extends React.Component<any, MenuViewState> {
   render() {
     return (
       <Sider
-        style={{ minHeight: '100vh' }}
+        // style={{ minHeight: '100vh' }}
         collapsible
         collapsed={this.state.collapsed}
         onCollapse={this.toggleCollapsed}
