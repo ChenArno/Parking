@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { Layout, Menu, Icon } from 'antd'
-import { withRouter, Link } from 'react-router-dom' // 解决子组件获取不到history
+import { Link } from 'react-router-dom' // 解决子组件获取不到history withRouter
 const { Sider } = Layout
+import getMenuConfig, { MenuList } from './config.ts'
 
 interface MenuViewState {
   collapsed?: boolean
+  menus?: Array<any>
 }
 // interface MenuViewProps {}
 
@@ -12,13 +14,47 @@ class MenuView extends React.Component<any, MenuViewState> {
   constructor(props: any) {
     super(props)
   }
-  state = {
-    collapsed: false
+  state: any = {
+    collapsed: false,
+    menus: Array
   }
   toggleCollapsed = () => {
     this.setState({
       collapsed: !this.state.collapsed
     })
+  }
+
+  renderMenu = ({ id, icon, label, path }: MenuList) => {
+    return (
+      <Menu.Item
+        key={id}
+        // onClick={() => {
+        //   this.props.history.push('detail')
+        // }}
+      >
+        <Link to={path}>
+          <Icon type={icon} />
+          <span>{label}</span>
+        </Link>
+      </Menu.Item>
+    )
+  }
+
+  componentWillMount() {
+    this.renderItems()
+  }
+
+  renderItems = async () => {
+    try {
+      let res: any = await getMenuConfig()
+      this.setState({
+        menus: res.map((v: MenuList) => {
+          return this.renderMenu(v)
+        })
+      })
+    } catch (err) {
+      throw new Error(err)
+    }
   }
   render() {
     return (
@@ -30,28 +66,11 @@ class MenuView extends React.Component<any, MenuViewState> {
       >
         {console.log(this.props)}
         <Menu defaultSelectedKeys={['3']} mode="inline" theme="dark">
-          <Menu.Item key="1">
-            <Link to="/pages/parking">
-              <Icon type="desktop" />
-              <span>车位管理</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="inbox" />
-            <span>车辆区域</span>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Icon type="inbox" />
-            <span>收费管理</span>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Icon type="pie-chart" />
-            <span>用户管理</span>
-          </Menu.Item>
+          {this.state.menus}
         </Menu>
       </Sider>
     )
   }
 }
 
-export default withRouter(MenuView)
+export default MenuView

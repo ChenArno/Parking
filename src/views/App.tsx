@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import { Layout } from 'antd'
 import './index.less'
 import LayHead from '@/views/layHead/index.tsx'
@@ -7,11 +7,12 @@ import MenuView from '@/views/menu/index.tsx'
 import BasicRoute from '@/routes/index.tsx'
 const { Content } = Layout
 
+// BrowserRouter 配置需要服务端配置
 class App extends React.Component<any, any> {
   render() {
     return (
       <div className="cont">
-        <BrowserRouter>
+        <Router>
           <Layout className="lay-cont">
             <LayHead />
             <Layout>
@@ -21,7 +22,7 @@ class App extends React.Component<any, any> {
               </Content>
             </Layout>
           </Layout>
-        </BrowserRouter>
+        </Router>
       </div>
     )
   }
