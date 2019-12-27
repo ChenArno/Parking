@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-24 11:26:25
+ * @LastEditTime : 2019-12-27 10:26:38
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -31,7 +31,11 @@ const webpackDevConfig = merge(common, {
     // 如果使用webpack-dev-server，需要设为true，禁止显示devServer的console信息
     quiet: true,
     // 编译出现错误时，将错误直接显示在页面上
-    overlay: true
+    overlay: true,
+    // 解决react-router使用browerhitory
+    // historyApiFallback: {
+    //   index: 'src/index.html'
+    // }
   },
   plugins: [
     new HtmlWebpackPlugin({
