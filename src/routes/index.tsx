@@ -6,18 +6,16 @@ import routeConfig from './config.ts'
 class BasicRoute extends React.Component {
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path="/" component={Detail}>
-            {/* 重定向 */}
-            <Redirect to="/area" />
-          </Route>
-          <Route exact path="/area" component={routeConfig.area} />
-          <Route exact path="/parking" component={routeConfig.parking} />
-          <Route exact path="/charge" component={routeConfig.charge} />
-          <Route exact path="/user" component={routeConfig.user} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Detail}>
+          {/* 重定向 */}
+          <Redirect to="/area" />
+        </Route>
+        <Route exact path="/area" component={routeConfig.area} />
+        <Route exact path="/parking" component={routeConfig.parking} />
+        <Route exact path="/charge" component={routeConfig.charge} />
+        <Route exact path="/user" component={routeConfig.user} />
+      </Switch>
     )
   }
 }

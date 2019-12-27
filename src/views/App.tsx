@@ -21,6 +21,7 @@ class App extends React.Component<any, any> {
                 <BasicRoute />
               </Content>
             </Layout>
+            {/* <Footer className="footer">jj</Footer> */}
           </Layout>
         </Router>
       </div>
