@@ -1,4 +1,21 @@
+@import '../../assets/css/index.less';
+
 .head {
   margin: 0;
-  color: #fff;
+  color: #000;
+  @lay-flex();
+  border-bottom: 1px solid #ccc;
+
+  &-title {
+    font-size: 28px;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC";
+    font-weight: bold;
+    font-style: initial;
+  }
+  &-user{
+    width: 80px;
+    padding: 0 5px;
+    @lay-flex();
+    @lay-point();
+  }
 }

@@ -65,7 +65,7 @@ class MenuView extends React.Component<any, MenuViewState> {
         onCollapse={this.toggleCollapsed}
       >
         {console.log(this.props)}
-        <Menu defaultSelectedKeys={['3']} mode="inline">
+        <Menu defaultSelectedKeys={['parking']} mode="inline">
           {this.state.menus}
         </Menu>
       </Sider>

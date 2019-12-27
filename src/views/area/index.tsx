@@ -1,8 +1,9 @@
 import * as React from 'react'
+import { Comment } from '@/components/index.tsx'
 
 class Area extends React.Component<any, any> {
   render() {
-    return <div>区域管理</div>
+    return <Comment></Comment>
   }
 }
 
