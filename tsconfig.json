@@ -3,6 +3,12 @@
     "module": "ESNext",
     "target": "es6",
     "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "moduleResolution": "node",
     "noImplicitThis": true,
     "noImplicitAny": true,
