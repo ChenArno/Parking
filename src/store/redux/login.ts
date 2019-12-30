@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-30 16:37:36
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-30 17:28:42
+ * @LastEditTime : 2019-12-30 17:30:32
  */
 // 枚举
 enum LOGIN {
@@ -20,7 +20,7 @@ const loginState: LoginState = {
   isAuth: false,
   userName: '陈'
 }
-
+// reducer
 export function auth(state = loginState, action: any) {
   switch (action.type) {
     case LOGIN.IN:

@@ -30,6 +30,7 @@ class Parking extends React.Component<any, any> {
     )
   }
 }
+// 连接组件
 const App = connect(state => state, { login, logout })(Parking)
 
 export default App
