@@ -4,6 +4,7 @@
     "target": "es6",
     "jsx": "preserve",
     "baseUrl": "./",
+    "experimentalDecorators": true,
     "paths": {
       "@/*": [
         "src/*"
