@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { Layout, Avatar } from 'antd'
+import { Layout, Avatar, Modal } from 'antd'
 import './index.less'
 import { connect } from 'react-redux'
 import { login, logout } from '@/store/redux/login.ts'
 const { Header } = Layout
+const { confirm } = Modal
 
 class LayHead extends React.Component<any, any> {
   spanElem = (isAuth: boolean, name: string) => {
@@ -11,7 +12,7 @@ class LayHead extends React.Component<any, any> {
       return (
         <div
           onClick={() => {
-            this.props.logout()
+            showConfirm(this.props.logout)
           }}
         >
           <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
@@ -44,6 +45,21 @@ class LayHead extends React.Component<any, any> {
       </Header>
     )
   }
+}
+
+function showConfirm(logout: Function) {
+  confirm({
+    title: '提示',
+    content: '确定要登出界面吗?',
+    onOk() {
+      // return new Promise((resolve, reject) => {
+      //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+      // }).catch(() => console.log('Oops errors!'))
+      logout()
+    },
+    okText: '确定',
+    cancelText: '取消'
+  })
 }
 const App = connect(state => state, { login, logout })(LayHead)
 
