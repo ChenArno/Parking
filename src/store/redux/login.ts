@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-30 16:37:36
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-31 15:17:11
+ * @LastEditTime : 2019-12-31 15:56:38
  */
 import Storage from '@/utils/Storage.ts'
 import Keys from '@/utils/keys.ts'
@@ -32,18 +32,24 @@ if (!info) {
     id: 898
   })
 }
-const loginState: LoginState = storage.getValue(Keys.UserInfo)
+
+const loginState: LoginState = storage.getValue(Keys.UserInfo, true)
 // reducer
 export function auth(state = loginState, action: any) {
+  let res = state
   switch (action.type) {
     case LOGIN.IN:
       // 对象合并
-      return { ...state, isAuth: true }
+      res = { ...state, isAuth: true }
+      break
     case LOGIN.OUT:
-      return { ...state, isAuth: false }
+      res = { ...state, isAuth: false }
+      break
     default:
-      return state
+      break
   }
+  storage.setValue(Keys.UserInfo, res)
+  return res
 }
 
 // action
