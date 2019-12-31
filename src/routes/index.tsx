@@ -9,7 +9,7 @@ class BasicRoute extends React.Component {
       <Switch>
         <Route exact path="/" component={Detail}>
           {/* 重定向 */}
-          <Redirect to="/area" />
+          <Redirect to="/parking" />
         </Route>
         <Route exact path="/area" component={routeConfig.area} />
         <Route exact path="/parking" component={routeConfig.parking} />
