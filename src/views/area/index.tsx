@@ -1,71 +1,47 @@
 import * as React from 'react'
-import { Comment } from '@/components/index.tsx'
-import { Form, Input, Button } from 'antd'
-const FormItem = Form.Item
+import { Comment, FormCom } from '@/components/index.tsx'
+import { connect } from 'react-redux'
+import { query } from '@/store/redux/formData.ts'
 
-function hasErrors(fieldsError: any) {
-  console.log(fieldsError)
-  return Object.keys(fieldsError).some((field: any) => fieldsError[field])
-}
 class Area extends React.Component<any, any> {
-  handleSubmit = (e: any) => {
-    e.preventDefault()
-    this.props.form.validateFields((err: Error, values: any) => {
-      if (!err) {
-        console.log(`values:${values}`)
-      }
-    })
-  }
   render() {
-    const {
-      getFieldDecorator,
-      getFieldsError,
-      getFieldError,
-      isFieldTouched
-    }: any = this.props.form
-    const userNameError =
-      isFieldTouched('userName') && getFieldError('userName')
-    const passwordError =
-      isFieldTouched('password') && getFieldError('password')
+    {
+      console.log(this.props)
+    }
     return (
       <Comment>
-        {/* <div title="gggg">sjj</div> */}
-        <div>
-          <Form layout="inline" onSubmit={this.handleSubmit}>
-            <FormItem
-              validateStatus={userNameError ? 'error' : ''}
-              help={userNameError || ''}
-            >
-              {getFieldDecorator('userName', {
-                rules: [
-                  { required: true, message: 'Please input your username!' }
-                ]
-              })(<Input placeholder="Username" />)}
-            </FormItem>
-            <FormItem
-              validateStatus={passwordError ? 'error' : ''}
-              help={passwordError || ''}
-            >
-              {getFieldDecorator('password', {
-                rules: [
-                  { required: true, message: 'Please input your Password!' }
-                ]
-              })(<Input placeholder="Password" />)}
-            </FormItem>
-            <FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                disabled={hasErrors(getFieldsError())}
-              >
-                确定
-              </Button>
-            </FormItem>
-          </Form>
-        </div>
+        <FormCom></FormCom>
       </Comment>
     )
   }
+
+  // 代替componentWillReceiveProps
+  // static getDerivedStateFromProps(nextProps: any, prevState: any) {
+  //   if (nextProps.isLogin !== prevState.isLogin) {
+  //     return {
+  //       isLogin: nextProps.isLogin
+  //     }
+  //   }
+  //   return null
+  // }
+  // handleClose() {
+  //   console.log('handleClose')
+  // }
+
+  // componentDidUpdate(prevProps: any, prevState: any) {
+  //   if (!prevState.isLogin && this.props.isLogin) {
+  //     this.handleClose()
+  //   }
+  // }
+
+  // 代替componentWillUpdate
+  // 常见的 componentWillUpdate 的用例是在组件更新前，
+  // 读取当前某个 DOM 元素的状态，并在 componentDidUpdate 中进行相应的处理。
+  // getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
+  //   console.log(prevProps)
+  //   console.log(prevState)
+  // }
 }
-const WrappForm = Form.create()(Area)
-export default WrappForm
+const FormElm = connect(state => state, { query })(Area)
+
+export default FormElm

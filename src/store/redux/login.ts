@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-30 16:37:36
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-31 15:56:38
+ * @LastEditTime : 2020-01-03 10:50:41
  */
 import Storage from '@/utils/Storage.ts'
 import Keys from '@/utils/keys.ts'
@@ -35,6 +35,7 @@ if (!info) {
 
 const loginState: LoginState = storage.getValue(Keys.UserInfo, true)
 // reducer
+// action 指login和logout事件
 export function auth(state = loginState, action: any) {
   let res = state
   switch (action.type) {

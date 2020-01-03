@@ -26,7 +26,6 @@ class Comment extends React.Component<CommentProps, any> {
             margin: 0
           }}
         >
-          {console.log(typeof this.props.children)}
           {Array.isArray(this.props.children)
             ? this.props.children.map((child: any) => this.renderChild(child))
             : this.props.children && this.renderChild(this.props.children)}
