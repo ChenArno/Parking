@@ -1,27 +1,31 @@
 import * as React from 'react'
 import { Form, Input, Button } from 'antd'
-import { query } from '@/store/redux/formData.ts'
-import { connect } from 'react-redux'
-// import { FormComponentProps } from 'antd/lib/form/Form'
 const FormItem = Form.Item
 
-// interface UserFormProps extends FormComponentProps {
-//   userName: string
-//   password: string
-// }
+class CommentInput extends React.Component<{ onMit?: any; form?: any }, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      userName: '',
+      content: ''
+    }
+  }
 
-class FormCom extends React.Component<any, any> {
   handleSubmit = (e: any) => {
     e.preventDefault()
     this.props.form.validateFields((err: Error, values: any) => {
       if (!err) {
-        // console.log(`values:${values}`)
-        this.props.query(values)
+        // if (this.props.pnSubmit) {
+        //   let { userName, content } = this.state
+        //   this.props.onSubmit({ userName, content })
+        // }
+        this.setState({ content: '' })
         return
       }
       console.log(err)
     })
   }
+
   render() {
     const { getFieldDecorator }: any = this.props.form
     return (
@@ -46,6 +50,6 @@ class FormCom extends React.Component<any, any> {
   }
 }
 
-const WrappForm = Form.create()(FormCom)
-const App = connect(state => state, { query })(WrappForm)
-export default App
+// const wrapForm = Form.create()(CommentInput)
+
+export default CommentInput

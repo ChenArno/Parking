@@ -4,7 +4,7 @@ import { Button, Icon, Switch } from 'antd'
 import './index.less'
 import LayHead from '@/views/layHead/index.tsx'
 import MenuView from '@/views/menu/index.tsx'
-import { TestCom } from '@/components/index.tsx'
+import { TestCom } from '@/components'
 const { Content } = Layout
 
 interface HomeState {

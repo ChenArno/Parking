@@ -1,13 +1,11 @@
 import * as React from 'react'
-import { Comment, FormCom } from '@/components/index.tsx'
+import { Comment, FormCom } from '@/components/index.ts'
 import { connect } from 'react-redux'
 import { query } from '@/store/redux/formData.ts'
 
 class Area extends React.Component<any, any> {
   render() {
-    {
-      console.log(this.props)
-    }
+    console.log(this.props)
     return (
       <Comment>
         <FormCom></FormCom>
