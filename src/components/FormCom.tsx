@@ -1,9 +1,14 @@
 import * as React from 'react'
 import { Form, Input, Button } from 'antd'
+import { FormComponentProps } from 'antd/lib/form/Form'
 const FormItem = Form.Item
 
-class FormCom extends React.Component<any, any> {
-  constructor(props: any) {
+// form.create props需要继承FormComponentProps
+interface FormProps extends FormComponentProps {
+  msg?: string
+}
+class FormCom extends React.Component<FormProps, any> {
+  constructor(props: FormProps) {
     super(props)
     let { msg } = this.props
     console.log(msg)
@@ -48,5 +53,4 @@ class FormCom extends React.Component<any, any> {
   }
 }
 
-const WrappForm = Form.create({ name: 'FormCom ' })(FormCom)
-export default WrappForm
+export default Form.create<FormProps>({ name: 'FormCom ' })(FormCom)
