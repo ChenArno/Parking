@@ -26,19 +26,21 @@ class Comment extends React.Component<CommentProps, any> {
             margin: 0
           }}
         >
-          {Array.isArray(this.props.children)
-            ? this.props.children.map((child: any) => this.renderChild(child))
-            : this.props.children && this.renderChild(this.props.children)}
+          {this.renderChild()}
         </Content>
       </Layout>
     )
   }
 
-  renderChild(child: any) {
-    if (child.props.title) {
-      return <div key="title">{child}</div>
-    }
-    return <div key="content">{child}</div>
+  renderChild() {
+    let { children } = this.props
+    return Array.isArray(children) ? (
+      children.map((child: any, i: number) => (
+        <div key={`key${i}`}>{child}</div>
+      ))
+    ) : (
+      <div key="content">{children}</div>
+    )
   }
 }
 
