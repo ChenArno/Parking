@@ -10,20 +10,30 @@ class Area extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {
+      selectObj: [
+        {
+          label: '车位号',
+          value: 'NO'
+        },
+        {
+          label: '停车楼层',
+          value: 'floor'
+        }
+      ],
       dataSource: [
         {
           NO: '1',
-          floor: '胡彦斌',
-          rent: 32,
-          lease: '西湖区湖底公园1号',
-          createTime: 1232144
+          floor: '2层',
+          rent: 200,
+          lease: '1年',
+          createTime: 1472793615764
         },
         {
           NO: '2',
-          floor: 'dsd',
-          rent: 32,
-          lease: '西湖区湖底公园1号',
-          createTime: 1232144
+          floor: '1层',
+          rent: 200,
+          lease: '1年',
+          createTime: 1472793615764
         }
       ],
       columns: [
@@ -55,12 +65,16 @@ class Area extends React.Component<any, any> {
       ]
     }
   }
+  onChange = (val: any) => {
+    console.log(val)
+  }
 
   render() {
     return (
       <Comment>
         <FormCom
-          msg="sss"
+          selectObj={this.state.selectObj}
+          onChange={this.onChange}
           wrappedComponentRef={(form: any) => (this.formRef = form)}
         ></FormCom>
         <CommentTable
@@ -72,7 +86,6 @@ class Area extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    // this.formRef.onchang()
     console.log(this.formRef)
   }
   // 代替componentWillReceiveProps

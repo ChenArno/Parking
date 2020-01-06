@@ -36,7 +36,7 @@ class Comment extends React.Component<CommentProps, any> {
     let { children } = this.props
     return Array.isArray(children) ? (
       children.map((child: any, i: number) => (
-        <div key={`key${i}`}>{child}</div>
+        <div className="cont-bottom" key={`key${i}`}>{child}</div>
       ))
     ) : (
       <div key="content">{children}</div>

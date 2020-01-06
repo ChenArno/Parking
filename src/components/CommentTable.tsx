@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Table } from 'antd'
+import DateFormat from '@/utils/DateFormat.ts'
 
 class CommentTable extends React.Component<any, any> {
   constructor(props: any) {
@@ -7,6 +8,10 @@ class CommentTable extends React.Component<any, any> {
   }
   render() {
     let { dataSource, columns } = this.props
+    dataSource = dataSource.map((item: any) => {
+      item.createTime = DateFormat.formatDate(item.createTime)
+      return item
+    })
     return (
       <Table
         rowKey={(record: any) => record.NO}
