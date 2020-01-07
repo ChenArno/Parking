@@ -3,12 +3,15 @@ import { Layout, Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom' // 解决子组件获取不到history withRouter
 const { Sider } = Layout
 import getMenuConfig, { MenuList } from './config.ts'
+import { selectMenu } from '@/store/redux/formData.ts'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
+// withRouter 路由跳转
 interface MenuViewState {
   collapsed?: boolean
   menus?: Array<any>
 }
-// interface MenuViewProps {}
 
 class MenuView extends React.Component<any, MenuViewState> {
   constructor(props: any) {
@@ -28,9 +31,9 @@ class MenuView extends React.Component<any, MenuViewState> {
     return (
       <Menu.Item
         key={id}
-        // onClick={() => {
-        //   this.props.history.push('detail')
-        // }}
+        onClick={() => {
+          this.props.selectMenu(path)
+        }}
       >
         <Link to={path}>
           <Icon type={icon} />
@@ -42,6 +45,7 @@ class MenuView extends React.Component<any, MenuViewState> {
 
   componentWillMount() {
     this.renderItems()
+    this.props.history.push(this.props.queryEvent.path)
   }
 
   renderItems = async () => {
@@ -65,7 +69,7 @@ class MenuView extends React.Component<any, MenuViewState> {
         onCollapse={this.toggleCollapsed}
       >
         {/* {console.log(this.props)} */}
-        <Menu defaultSelectedKeys={['parking']} mode="inline">
+        <Menu defaultSelectedKeys={[this.props.queryEvent.path]} mode="inline">
           {this.state.menus}
         </Menu>
       </Sider>
@@ -73,4 +77,4 @@ class MenuView extends React.Component<any, MenuViewState> {
   }
 }
 
-export default MenuView
+export default withRouter(connect(state => state, { selectMenu })(MenuView))

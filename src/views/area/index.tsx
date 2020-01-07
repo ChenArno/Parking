@@ -71,7 +71,7 @@ class Area extends React.Component<any, any> {
 
   render() {
     return (
-      <Comment>
+      <Comment title="车辆区域">
         <FormCom
           selectObj={this.state.selectObj}
           onChange={this.onChange}

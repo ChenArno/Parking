@@ -11,11 +11,15 @@ interface SelectOption {
 // form.create props需要继承FormComponentProps
 interface FormProps extends FormComponentProps {
   selectObj: Array<SelectOption>
+  buttonTitle?: string
   onChange?: Function
 }
 class FormCom extends React.Component<FormProps, any> {
   constructor(props: FormProps) {
     super(props)
+    this.state = {
+      buttonTitle: !this.props.buttonTitle && '查询'
+    }
   }
   handleSubmit = (e: any) => {
     e.preventDefault()
@@ -32,7 +36,7 @@ class FormCom extends React.Component<FormProps, any> {
   renderElm = () => {
     // const { getFieldDecorator } = this.props.form
     let { selectObj } = this.props
-    console.log(selectObj)
+    // console.log(selectObj)
     return selectObj.map((item: SelectOption, i: number) => {
       return (
         <FormItem key={i}>
@@ -51,7 +55,7 @@ class FormCom extends React.Component<FormProps, any> {
           {this.renderElm()}
           <FormItem>
             <Button type="primary" htmlType="submit">
-              查询
+              {this.state.buttonTitle}
             </Button>
           </FormItem>
         </Form>

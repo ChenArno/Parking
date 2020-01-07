@@ -16,7 +16,7 @@ class App extends React.Component<any, any> {
           <Layout className="lay-cont">
             <LayHead />
             <Layout>
-              <MenuView name="sss" />
+              <MenuView />
               <Content>
                 <BasicRoute />
               </Content>

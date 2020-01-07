@@ -14,7 +14,7 @@ interface HomeState {
 //   window.innerHeight ||
 //   document.documentElement.clientHeight ||
 //   document.body.clientHeight
-  
+
 export default class Home extends React.Component<any, HomeState> {
   state = {
     disabled: false
@@ -33,7 +33,7 @@ export default class Home extends React.Component<any, HomeState> {
         <Layout className="lay-cont">
           <LayHead />
           <Layout>
-            <MenuView name="sss" />
+            <MenuView />
             <Content>
               <Icon type="link" />
               <Switch

@@ -1,62 +1,77 @@
 import * as React from 'react'
-import { createStore } from 'redux'
-import { Provider, connect } from 'react-redux'
-import { Button } from 'antd'
+import { Comment, FormCom, CommentTable } from '@/components/index.ts'
 
 class Charge extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      selectObj: [
+        {
+          label: '车牌号',
+          value: 'plateNO'
+        },
+        {
+          label: '车位号',
+          value: 'NO'
+        }
+      ],
+      dataSource: [],
+      columns: [
+        {
+          title: '车牌号',
+          dataIndex: 'plateNO',
+          key: 'plateNO'
+        },
+        {
+          title: '车辆类型',
+          dataIndex: 'vetype',
+          key: 'vetype'
+        },
+        {
+          title: '车位号',
+          dataIndex: 'NO',
+          key: 'NO'
+        },
+        {
+          title: '停车开始时间',
+          dataIndex: 'benginTime',
+          key: 'benginTime'
+        },
+        {
+          title: '停车结束时间',
+          dataIndex: 'endTime',
+          key: 'endTime'
+        },
+        {
+          title: '停车时长',
+          dataIndex: 'time',
+          key: 'time'
+        },
+        {
+          title: '费用',
+          dataIndex: 'cost',
+          key: 'cost'
+        }
+      ]
+    }
+  }
+  onChange = (val: any) => {
+    console.log(val)
+  }
   render() {
-    const { PayIncrease, PayDecrease, tiger }: any = this.props
     return (
-      <div>
-        <h2>当月工资为{tiger}</h2>
-        <Button onClick={PayIncrease}>升职</Button>
-        <Button onClick={PayDecrease}>降职</Button>
-      </div>
+      <Comment title="收费管理">
+        <FormCom
+          selectObj={this.state.selectObj}
+          onChange={this.onChange}
+        ></FormCom>
+        <CommentTable
+          dataSource={this.state.dataSource}
+          columns={this.state.columns}
+        ></CommentTable>
+      </Comment>
     )
   }
 }
 
-const tiger = 10000
-
-// action
-const increase = {
-  type: '涨工资'
-}
-
-const decrease = {
-  type: '扣工资'
-}
-// reducer
-const reducer = (state: number = tiger, action: any) => {
-  switch (action.type) {
-    case '涨工资':
-      return (state += 100)
-    case '扣工资':
-      return (state -= 100)
-    default:
-      return state
-  }
-}
-
-// 创建store
-
-const store = createStore(reducer)
-function mapStateToProps<T>(state: T) {
-  return { tiger: state }
-}
-function mapDispatchToProps(dispatch: any) {
-  return {
-    PayIncrease: () => dispatch(increase),
-    PayDecrease: () => dispatch(decrease)
-  }
-}
-// 连接组件
-const App = connect(mapStateToProps, mapDispatchToProps)(Charge)
-const reslut = () => {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  )
-}
-export default reslut
+export default Charge

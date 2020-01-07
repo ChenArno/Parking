@@ -11,10 +11,9 @@ class BasicRoute extends React.Component {
           {/* 重定向 */}
           <Redirect to="/parking" />
         </Route>
-        <Route exact path="/area" component={routeConfig.area} />
-        <Route exact path="/parking" component={routeConfig.parking} />
-        <Route exact path="/charge" component={routeConfig.charge} />
-        <Route exact path="/user" component={routeConfig.user} />
+        {routeConfig.map((item: any) => {
+          return <Route exact path={`/${item.name}`} component={item.path} />
+        })}
       </Switch>
     )
   }

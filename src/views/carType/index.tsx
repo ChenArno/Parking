@@ -1,50 +1,22 @@
 import * as React from 'react'
 import { Comment, FormCom, CommentTable } from '@/components/index.ts'
 
-function Path<T>(path: T) {
-  return function name(target: Function) {
-    // console.log(target)
-    // // const parking = new target()
-    // console.log(path)
-  }
-}
-
-@Path('/hello')
 class Parking extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {
       selectObj: [
         {
-          label: '车位号',
-          value: 'NO'
-        },
-        {
-          label: '业主',
-          value: 'owner'
+          label: '车辆类型名称',
+          value: 'carType'
         }
       ],
       dataSource: [],
       columns: [
         {
-          title: '车位号',
-          dataIndex: 'NO',
-          key: 'NO'
-        },
-        {
-          title: '业主',
-          dataIndex: 'owner',
-          key: 'owner'
-        },
-        {
-          title: '车辆类型',
+          title: '车辆类型名称',
           dataIndex: 'carType',
           key: 'carType'
-        },
-        {
-          title: '联系电话',
-          dataIndex: 'handphone',
-          key: 'handphone'
         },
         {
           title: '创建时间',
@@ -59,7 +31,7 @@ class Parking extends React.Component<any, any> {
   }
   render() {
     return (
-      <Comment title="车位管理">
+      <Comment title="车辆类型管理">
         <FormCom
           selectObj={this.state.selectObj}
           onChange={this.onChange}

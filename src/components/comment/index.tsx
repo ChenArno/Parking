@@ -17,7 +17,7 @@ class Comment extends React.Component<CommentProps, any> {
     return (
       <Layout className="comment">
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>车位管理</Breadcrumb.Item>
+          <Breadcrumb.Item>{this.props.title}</Breadcrumb.Item>
         </Breadcrumb>
         <Content
           style={{
@@ -36,7 +36,9 @@ class Comment extends React.Component<CommentProps, any> {
     let { children } = this.props
     return Array.isArray(children) ? (
       children.map((child: any, i: number) => (
-        <div className="cont-bottom" key={`key${i}`}>{child}</div>
+        <div className="cont-bottom" key={`key${i}`}>
+          {child}
+        </div>
       ))
     ) : (
       <div key="content">{children}</div>

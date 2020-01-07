@@ -1,10 +1,9 @@
 /*
  * @Descripttion: 时间转换工具
- * @version:
  * @Author: chenArno
  * @Date: 2020-01-06 16:17:55
  * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-06 17:14:45
+ * @LastEditTime : 2020-01-07 10:32:00
  */
 
 /**
@@ -17,6 +16,7 @@
 interface Option {
   [key: string]: any
 }
+
 class DateFormat {
   public static formatDate<T>(date?: T | Date, fmt?: string | undefined) {
     date = date === undefined ? new Date() : date
