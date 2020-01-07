@@ -43,7 +43,7 @@ class MenuView extends React.Component<any, MenuViewState> {
     )
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.renderItems()
     this.props.history.push(this.props.queryEvent.path)
   }

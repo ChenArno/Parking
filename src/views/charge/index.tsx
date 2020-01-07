@@ -87,15 +87,6 @@ class Charge extends React.Component<any, any> {
     console.log(val)
   }
   render() {
-    let { dataSource } = this.state
-    dataSource = dataSource.map((item: any) => {
-      item.benginTime = item.benginTime
-        ? DateFormat.formatDate(item.benginTime)
-        : '--'
-      item.endTime = item.endTime ? DateFormat.formatDate(item.endTime) : '--'
-      item.time = item.time ? DateFormat.DurationToFriendly(item.time) : '--'
-      return item
-    })
     return (
       <Comment title="收费管理">
         <FormCom
@@ -103,11 +94,25 @@ class Charge extends React.Component<any, any> {
           onChange={this.onChange}
         ></FormCom>
         <CommentTable
-          dataSource={dataSource}
+          dataSource={this.state.dataSource}
           columns={this.state.columns}
         ></CommentTable>
       </Comment>
     )
+  }
+
+  componentDidMount() {
+    let { dataSource } = this.state
+    this.setState({
+      dataSource: dataSource.map((item: any) => {
+        item.benginTime = item.benginTime
+          ? DateFormat.formatDate(item.benginTime)
+          : '--'
+        item.endTime = item.endTime ? DateFormat.formatDate(item.endTime) : '--'
+        item.time = item.time ? DateFormat.DurationToFriendly(item.time) : '--'
+        return item
+      })
+    })
   }
 }
 

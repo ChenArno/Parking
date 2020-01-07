@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Comment, FormCom, CommentTable } from '@/components/index.ts'
+import { Icon } from 'antd'
 
 function Path<T>(path: T) {
   return function name(target: Function) {
@@ -24,7 +25,12 @@ class Parking extends React.Component<any, any> {
           value: 'owner'
         }
       ],
-      dataSource: [],
+      dataSource: [
+        {
+          NO: '1',
+          owner: '陈'
+        }
+      ],
       columns: [
         {
           title: '车位号',
@@ -50,6 +56,20 @@ class Parking extends React.Component<any, any> {
           title: '创建时间',
           dataIndex: 'createTime',
           key: 'createTime'
+        },
+        {
+          title: 'Action',
+          key: 'action',
+          render: (text: any, record: any) => (
+            <span
+              onClick={() => {
+                console.log(this.props)
+                this.props.history.push('/parking/detail')
+              }}
+            >
+              详情 <Icon type="down" />
+            </span>
+          )
         }
       ]
     }

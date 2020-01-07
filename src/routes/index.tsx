@@ -7,6 +7,7 @@ class BasicRoute extends React.Component {
   render() {
     return (
       <Switch>
+        {/* exact : 既路由path='/page'会匹配路由path='/'和路由path='/page' */}
         <Route exact path="/" component={Detail}>
           {/* 重定向 */}
           <Redirect to="/parking" />

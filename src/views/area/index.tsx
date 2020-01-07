@@ -71,14 +71,6 @@ class Area extends React.Component<any, any> {
   }
 
   render() {
-    let { dataSource } = this.state
-    dataSource = dataSource.map((item: any) => {
-      item.createTime = item.createTime
-        ? DateFormat.formatDate(item.createTime)
-        : '--'
-      return item
-    })
-    console.log(DateFormat.DurationToFriendly(3124))
     return (
       <Comment title="车辆区域">
         <FormCom
@@ -87,15 +79,25 @@ class Area extends React.Component<any, any> {
           wrappedComponentRef={(form: any) => (this.formRef = form)}
         ></FormCom>
         <CommentTable
-          dataSource={dataSource}
+          dataSource={this.state.dataSource}
           columns={this.state.columns}
         ></CommentTable>
       </Comment>
     )
   }
 
+  // ajax请求一般在这一步进行操作
   componentDidMount() {
     console.log(this.formRef)
+    let { dataSource } = this.state
+    this.setState({
+      dataSource: dataSource.map((item: any) => {
+        item.createTime = item.createTime
+          ? DateFormat.formatDate(item.createTime)
+          : '--'
+        return item
+      })
+    })
   }
   // 代替componentWillReceiveProps
   // static getDerivedStateFromProps(nextProps: any, prevState: any) {
