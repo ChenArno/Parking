@@ -12,7 +12,14 @@ class BasicRoute extends React.Component {
           <Redirect to="/parking" />
         </Route>
         {routeConfig.map((item: any) => {
-          return <Route exact path={`/${item.name}`} component={item.path} />
+          return (
+            <Route
+              key={item.name}
+              exact
+              path={`/${item.name}`}
+              component={item.path}
+            />
+          )
         })}
       </Switch>
     )

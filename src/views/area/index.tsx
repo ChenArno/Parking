@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Comment, FormCom, CommentTable } from '@/components/index.ts'
+import DateFormat from '@/utils/DateFormat.ts'
 
 class Area extends React.Component<any, any> {
   // 获取子组件的ref对象
@@ -70,6 +71,14 @@ class Area extends React.Component<any, any> {
   }
 
   render() {
+    let { dataSource } = this.state
+    dataSource = dataSource.map((item: any) => {
+      item.createTime = item.createTime
+        ? DateFormat.formatDate(item.createTime)
+        : '--'
+      return item
+    })
+    console.log(DateFormat.DurationToFriendly(3124))
     return (
       <Comment title="车辆区域">
         <FormCom
@@ -78,7 +87,7 @@ class Area extends React.Component<any, any> {
           wrappedComponentRef={(form: any) => (this.formRef = form)}
         ></FormCom>
         <CommentTable
-          dataSource={this.state.dataSource}
+          dataSource={dataSource}
           columns={this.state.columns}
         ></CommentTable>
       </Comment>
