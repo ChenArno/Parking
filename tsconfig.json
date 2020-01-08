@@ -10,6 +10,10 @@
         "src/*"
       ]
     },
+    "lib": [
+      "dom",
+      "es7"
+    ],
     "moduleResolution": "node",
     "noImplicitThis": true,
     "noImplicitAny": true,

@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
-import Detail from 'views/detail.tsx'
+import index from 'views/index.tsx'
 import * as React from 'react'
 import routeConfig from './config.ts'
 
@@ -8,9 +8,15 @@ class BasicRoute extends React.Component {
     return (
       <Switch>
         {/* exact : 既路由path='/page'会匹配路由path='/'和路由path='/page' */}
-        <Route exact path="/" component={Detail}>
+        <Route exact path="/home" component={index} />
+        <Route
+          exact
+          path="/"
+          component={() => {
+            return <Redirect to="/home" />
+          }}
+        >
           {/* 重定向 */}
-          <Redirect to="/parking" />
         </Route>
         {routeConfig.map((item: any) => {
           return (

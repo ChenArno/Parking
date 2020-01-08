@@ -1,11 +1,7 @@
 import * as React from 'react'
-import { Layout } from 'antd'
-import { Button, Icon, Switch } from 'antd'
+import { Progress } from 'antd'
 import './index.less'
-import LayHead from '@/views/layHead/index.tsx'
-import MenuView from '@/views/menu/index.tsx'
-import { TestCom } from '@/components'
-const { Content } = Layout
+import { Comment } from '@/components/index.ts'
 
 interface HomeState {
   disabled?: boolean
@@ -24,38 +20,14 @@ export default class Home extends React.Component<any, HomeState> {
     console.log(`${disabled}`)
   }
   render() {
-    const { disabled } = this.state
-    const Template = (params: any) => {
-      return <div>{params.name}</div>
-    }
     return (
-      <div className="cont">
-        <Layout className="lay-cont">
-          <LayHead />
-          <Layout>
-            <MenuView />
-            <Content>
-              <Icon type="link" />
-              <Switch
-                size="small"
-                checked={disabled}
-                onChange={this.handleDisabledChange}
-              />
-              home
-              <Button type="primary" onClick={() => console.log('ssss')}>
-                Primary
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => this.props.history.push('detail')}
-              >
-                跳转
-              </Button>{' '}
-              <TestCom template={Template}></TestCom>
-            </Content>
-          </Layout>
-        </Layout>
-      </div>
+      <Comment title="首页">
+        <div className="home">
+          <Progress type="circle" percent={75} />
+          <Progress type="circle" percent={75} />
+          <Progress type="circle" percent={75} />
+        </div>
+      </Comment>
     )
   }
 }

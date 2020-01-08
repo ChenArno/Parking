@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-26 09:20:38
  * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-07 10:56:01
+ * @LastEditTime : 2020-01-08 15:33:34
  */
 // 这里本来可以直接写 [key:string]: any;
 // 但如果在 key 确定的情况下，可以用 keyof 来获取一个接口的所有 key 组成的联合类型，
@@ -19,6 +19,7 @@ export interface MenuList {
 }
 
 const menusLists: Array<MenuList> = [
+  { id: 'home', label: '首页', icon: 'desktop', path: '/' },
   { id: 'parking', label: '车位管理', icon: 'desktop', path: '/parking' },
   { id: 'area', label: '车辆区域', icon: 'flag', path: '/area' },
   { id: 'charge', label: '收费管理', icon: 'shop', path: '/charge' },

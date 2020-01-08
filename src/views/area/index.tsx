@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Comment, FormCom, CommentTable } from '@/components/index.ts'
 import DateFormat from '@/utils/DateFormat.ts'
+import { Popconfirm, message } from 'antd'
 
 class Area extends React.Component<any, any> {
   // 获取子组件的ref对象
@@ -23,6 +24,7 @@ class Area extends React.Component<any, any> {
       ],
       dataSource: [
         {
+          id: 1,
           NO: '1',
           floor: '2层',
           rent: 200,
@@ -30,6 +32,7 @@ class Area extends React.Component<any, any> {
           createTime: 1472793615764
         },
         {
+          id: 2,
           NO: '2',
           floor: '1层',
           rent: 200,
@@ -62,9 +65,40 @@ class Area extends React.Component<any, any> {
           title: '创建时间',
           dataIndex: 'createTime',
           key: 'createTime'
+        },
+        {
+          title: '操作',
+          key: 'action',
+          render: (text: any, record: any) => {
+            return (
+              <Popconfirm
+                title="Are you sure delete this task?"
+                onConfirm={() => {
+                  this.confirm(text)
+                }}
+                onCancel={this.cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <span>Delete</span>
+              </Popconfirm>
+            )
+          }
         }
       ]
     }
+  }
+  confirm(e: any) {
+    let { dataSource } = this.state
+    dataSource = dataSource.filter((v: any) => {
+      return v.id !== e.id
+    })
+    this.setState({
+      dataSource
+    })
+  }
+  cancel(e: any) {
+    message.error('Click on No')
   }
   onChange = (val: any) => {
     console.log(val)

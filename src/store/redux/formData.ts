@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2020-01-03 10:40:48
  * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-07 09:51:50
+ * @LastEditTime : 2020-01-08 15:45:13
  */
 enum FormData {
   query = 'query',
@@ -16,7 +16,7 @@ interface FormDataState {
 }
 
 const formDataState: FormDataState = {
-  path: 'parking'
+  path: 'home'
 }
 
 export function queryEvent(state = formDataState, action: any) {
