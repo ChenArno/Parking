@@ -5,6 +5,7 @@ import './index.less'
 import LayHead from '@/views/layHead/index.tsx'
 import MenuView from '@/views/menu/index.tsx'
 import BasicRoute from '@/routes/index.tsx'
+import '@/components/echarts/theme.js'
 const { Content } = Layout
 
 // BrowserRouter 配置需要服务端配置
