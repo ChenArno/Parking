@@ -10,6 +10,8 @@
         "src/*"
       ]
     },
+    // 解决ts混用js模块
+    "allowJs": true,
     "moduleResolution": "node",
     "noImplicitThis": true,
     "noImplicitAny": true,
