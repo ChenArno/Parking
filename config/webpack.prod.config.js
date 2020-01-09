@@ -4,8 +4,9 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 11:20:29
+ * @LastEditTime : 2020-01-09 11:00:04
  */
+const path = require('path')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
 // 打包编译前清理dist目录
@@ -13,6 +14,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 压缩插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// 拷贝文件
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 // 打包独立的css插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -24,21 +27,29 @@ const webpackProdConfig = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      // 打包之后的html文件名字
       filename: 'index.html',
       // public/index.html无论与要用的template是不是在一个目录，都是从根路径开始查找
+      // 以我们自己定义的html为模板生成，不然我们还要到打包之后的html文件中写
       template: 'public/index.html',
+      // 在body最底部引入js文件，如果是head，就是在head中引入js
       inject: 'body',
+      // 压缩html文件
       minify: {
+        // 去除注释
         removeComments: true,
+        // 去除空格
         collapseWhitespace: true
       }
-      // filename：打包之后的html文件名字
-      // template：以我们自己定义的html为模板生成，不然我们还要到打包之后的html文件中写
-      // inject：在body最底部引入js文件，如果是head，就是在head中引入js
-      // minify：压缩html文件
-      // removeComments：去除注释
-      // collapseWhitespace：去除空格
     }),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../dist'),
+        ignore: ['.*']
+      }
+    ]),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
