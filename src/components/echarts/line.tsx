@@ -7,8 +7,6 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/toolbox'
-// const theme = require('./theme.ts')
-import './theme.js'
 
 interface LineProps {
   option: Object
