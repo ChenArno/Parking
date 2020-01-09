@@ -4,10 +4,11 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-09 11:00:04
+ * @LastEditTime : 2020-01-09 11:07:14
  */
 const path = require('path')
 const merge = require('webpack-merge')
+const theme = require('./getTheme')()
 const common = require('./webpack.common.config')
 // 打包编译前清理dist目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -114,7 +115,15 @@ const webpackProdConfig = merge(common, {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader'
+          {
+            loader: 'less-loader',
+            // 自定义主题
+            options: {
+              sourceMap: true,
+              modifyVars: theme,
+              javascriptEnabled: true
+            }
+          }
         ]
       },
       {
