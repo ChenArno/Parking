@@ -5,7 +5,8 @@ import { Comment, ChartsLine } from '@/components/index.ts'
 
 interface HomeState {
   disabled?: boolean
-  option?: Object
+  left?: Array<Array<number>>
+  right?: Array<Array<number>>
 }
 // let screenHeight =
 //   window.innerHeight ||
@@ -17,44 +18,25 @@ export default class Home extends React.Component<any, HomeState> {
     super(props)
     this.state = {
       disabled: false,
-      option: {
-        title: { text: 'Line' },
-        tooltip: {},
-        toolbox: {
-          feature: {
-            dataView: {},
-            saveAsImage: {
-              pixelRatio: 2
-            },
-            restore: {}
-          }
-        },
-        xAxis: {},
-        yAxis: {},
-        series: [
-          {
-            type: 'line',
-            smooth: true,
-            data: [
-              [12, 5],
-              [24, 20],
-              [36, 36],
-              [48, 10],
-              [60, 10],
-              [72, 20]
-            ]
-          }
-        ]
-      }
+      left: [
+        [12, 5],
+        [24, 20],
+        [36, 36],
+        [48, 10],
+        [60, 10],
+        [72, 20]
+      ],
+      right: []
     }
   }
 
   handleDisabledChange = (disabled: boolean) => {
     this.setState({ disabled })
-    console.log(`${disabled}`)
   }
   componentDidMount() {}
   render() {
+    let option1 = this.getOption(this.state.left)
+    let option2 = this.getOption(this.state.right)
     return (
       <Comment title="首页">
         <div className="span-title">监测</div>
@@ -64,10 +46,36 @@ export default class Home extends React.Component<any, HomeState> {
           <Progress type="circle" percent={75} />
         </div>
         <div className="span-title">曲线图</div>
-        <div className="home">
-          <ChartsLine option={this.state.option} />
+        <div className="home chart">
+          <ChartsLine option={option1} />
+          <ChartsLine option={option2} />
         </div>
       </Comment>
     )
+  }
+
+  getOption(data: Array<any>) {
+    return {
+      title: { text: 'Line' },
+      tooltip: {},
+      toolbox: {
+        feature: {
+          dataView: {},
+          saveAsImage: {
+            pixelRatio: 2
+          },
+          restore: {}
+        }
+      },
+      xAxis: {},
+      yAxis: {},
+      series: [
+        {
+          type: 'line',
+          smooth: true,
+          data
+        }
+      ]
+    }
   }
 }
