@@ -63,7 +63,7 @@ class ChartsLine extends React.Component<LineProps, LineState> {
   }
   render() {
     return (
-      <div id={this.state.id} style={{ width: '80%', height: '100%' }}></div>
+      <div id={this.state.id} style={{ width: '40%', height: '100%' }}></div>
     )
   }
 }

@@ -56,17 +56,13 @@ export default class Home extends React.Component<any, HomeState> {
 
   getOption(data: Array<any>) {
     return {
-      title: { text: 'Line' },
-      tooltip: {},
-      toolbox: {
-        feature: {
-          dataView: {},
-          saveAsImage: {
-            pixelRatio: 2
-          },
-          restore: {}
-        }
+      grid: {
+        top: '20%',
+        left: '0',
+        bottom: '0%',
+        containLabel: true
       },
+      tooltip: {},
       xAxis: {},
       yAxis: {},
       series: [

@@ -1,118 +1,30 @@
 import * as React from 'react'
-import { Comment, FormCom, CommentTable } from '@/components/index.ts'
-import DateFormat from '@/utils/DateFormat.ts'
-import { Icon } from 'antd'
+import { Comment } from '@/components/index.ts'
+import { Route, Switch } from 'react-router-dom'
+// import table from './table.tsx'
+// import detail from './detail.tsx'
+
+// const InBox = ({ match }: any) => {
+//   console.log(match)
+//   return <Route path={`${match.url}/detail`} component={detail} />
+// }
 
 class Charge extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.state = {
-      selectObj: [
-        {
-          label: '车牌号',
-          value: 'plateNO'
-        },
-        {
-          label: '车位号',
-          value: 'NO'
-        }
-      ],
-      dataSource: [
-        {
-          plateNO: '浙A872Jl',
-          vetype: '小汽车',
-          NO: 583,
-          benginTime: 1472793615764,
-          endTime: 1472793665764,
-          time: 324242,
-          cost: 190
-        }
-      ],
-      columns: [
-        {
-          title: '车牌号',
-          dataIndex: 'plateNO',
-          key: 'plateNO'
-        },
-        {
-          title: '车辆类型',
-          dataIndex: 'vetype',
-          key: 'vetype'
-        },
-        {
-          title: '车位号',
-          dataIndex: 'NO',
-          key: 'NO'
-        },
-        {
-          title: '停车开始时间',
-          dataIndex: 'benginTime',
-          key: 'benginTime'
-        },
-        {
-          title: '停车结束时间',
-          dataIndex: 'endTime',
-          key: 'endTime'
-        },
-        {
-          title: '停车时长',
-          dataIndex: 'time',
-          key: 'time'
-        },
-        {
-          title: '费用',
-          dataIndex: 'cost',
-          key: 'cost'
-        },
-        {
-          title: 'Action',
-          key: 'action',
-          render: (text: any, record: any) => (
-            <span>
-              <a href="#">Action 一 {record.name}</a>
-              {console.log(text)}
-              <span className="ant-divider" />
-              <a href="#">Delete</a>
-              <span className="ant-divider" />
-              <a href="#" className="ant-dropdown-link">
-                More actions <Icon type="down" />
-              </a>
-            </span>
-          )
-        }
-      ]
-    }
-  }
-  onChange = (val: any) => {
-    console.log(val)
   }
   render() {
+    console.log(this.props)
+
     return (
       <Comment title="收费管理">
-        <FormCom
-          selectObj={this.state.selectObj}
-          onChange={this.onChange}
-        ></FormCom>
-        <CommentTable
-          dataSource={this.state.dataSource}
-          columns={this.state.columns}
-        ></CommentTable>
+        <Switch>
+          {/* <Redirect from="/charge" to="/charge/page1" exact></Redirect> */}
+          <Route path="page1" exact component={() => <div>about-page-1</div>} />
+          <Route path="page2" exact component={() => <div>about-page-2</div>} />
+        </Switch>
       </Comment>
     )
-  }
-
-  componentDidMount() {
-    let { dataSource } = this.state
-    this.setState({
-      dataSource: dataSource.map((item: any) => {
-        item.benginTime = item.benginTime
-          ? DateFormat.formatDate(item.benginTime)
-          : '--'
-        item.endTime = item.endTime ? DateFormat.formatDate(item.endTime) : '--'
-        item.time = item.time ? DateFormat.DurationToFriendly(item.time) : '--'
-        return item
-      })
-    })
   }
 }
 
