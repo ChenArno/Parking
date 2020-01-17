@@ -24,30 +24,51 @@ class BasicRoute extends React.Component {
         {routeConfig.map((item: any) => {
           return (
             <Route
-              key={item.name}
+              key={item.path}
               exact
-              path={`/${item.name}`}
-              component={item.path}
+              path={item.path}
+              component={
+                item.children?.length > 0
+                  ? () => (
+                      <Switch>
+                        {item.children.map((ch: any) => {
+                          return (
+                            <Route
+                              exact
+                              key={ch.name}
+                              path={ch.name}
+                              component={ch.path}
+                            />
+                          )
+                        })}
+                      </Switch>
+                    )
+                  : item.componentName
+              }
             ></Route>
           )
         })}
-        <Route path="/about" component={() => <div>{this.props.children}</div>}>
-          <div>
-            <Switch>
-              <Redirect from="/about" to="/about/page1" exact></Redirect>
-              <Route
-                path="/about/page1"
-                exact
-                component={() => <div>about-page-1</div>}
-              />
-              <Route
-                path="/about/page2"
-                exact
-                component={() => <div>about-page-2</div>}
-              />
-            </Switch>
-          </div>
-        </Route>
+        <Route
+          path="/about"
+          render={({ history, location, match }: any) => (
+            <div>
+              {console.log(history)}
+              <Switch>
+                <Redirect from="/about" to="/about/page1" exact></Redirect>
+                <Route
+                  path="/about/page1"
+                  exact
+                  component={() => <div>about-page-1</div>}
+                />
+                <Route
+                  path="/about/page2"
+                  exact
+                  component={() => <div>about-page-2</div>}
+                />
+              </Switch>
+            </div>
+          )}
+        ></Route>
         <Route path="/404" component={NotFound} />
         <Redirect to="/404" />
       </Switch>

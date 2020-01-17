@@ -4,45 +4,62 @@
  * @Author: chenArno
  * @Date: 2019-12-25 17:05:07
  * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-15 15:55:28
+ * @LastEditTime : 2020-01-16 11:23:59
  */
 import Loading from '@/components/Loading.tsx'
 import Loadable from 'react-loadable'
 
 const routeConfig = [
   {
-    name: 'area',
-    path: Loadable({
+    path: '/area',
+    componentName: Loadable({
       loader: () => import('../views/area/index.tsx'),
       loading: Loading
     })
   }, {
-    name: 'parking',
-    path: Loadable({
+    path: '/parking',
+    componentName: Loadable({
       loader: () => import('../views/parking/index.tsx'),
       loading: Loading
     })
   }, {
-    name: 'parking/detail',
-    path: Loadable({
+    path: '/parking/detail',
+    componentName: Loadable({
       loader: () => import('../views/parking/detail.tsx'),
       loading: Loading
     })
   }, {
-    name: 'charge',
-    path: Loadable({
+    path: '/charge',
+    componentName: Loadable({
       loader: () => import('../views/charge/index.tsx'),
       loading: Loading
-    })
+    }),
+    children: [
+      {
+        path: '/charge/',
+        exact: false,
+        componentName: Loadable({
+          loader: () => import('../views/charge/table.tsx'),
+          loading: Loading
+        })
+      },
+      {
+        path: '/charge/detail',
+        componentName: Loadable({
+          loader: () => import('../views/charge/detail.tsx'),
+          loading: Loading
+        })
+      }
+    ]
   }, {
-    name: 'user',
-    path: Loadable({
+    path: '/user',
+    componentName: Loadable({
       loader: () => import('../views/user/index.tsx'),
       loading: Loading
     })
   }, {
-    name: 'cartype',
-    path: Loadable({
+    path: '/cartype',
+    componentName: Loadable({
       loader: () => import('../views/cartype/index.tsx'),
       loading: Loading
     })
