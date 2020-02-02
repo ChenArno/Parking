@@ -35,7 +35,7 @@ class MenuView extends React.Component<any, MenuViewState> {
           this.props.selectMenu(path)
         }}
       >
-        <Link to={path}>
+        <Link to={`/${path}`}>
           <Icon type={icon} />
           <span>{label}</span>
         </Link>
