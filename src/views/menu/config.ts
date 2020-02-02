@@ -19,12 +19,12 @@ export interface MenuList {
 }
 
 const menusLists: Array<MenuList> = [
-  { id: 'home', label: '首页', icon: 'desktop', path: '/' },
-  { id: 'parking', label: '车位管理', icon: 'desktop', path: '/parking' },
-  { id: 'area', label: '车辆区域', icon: 'flag', path: '/area' },
-  { id: 'charge', label: '收费管理', icon: 'shop', path: '/charge' },
-  { id: 'cartype', label: '类型管理', icon: 'appstore-o', path: '/cartype' },
-  { id: 'user', label: '用户管理', icon: 'user', path: '/user' }
+  { id: 'home', label: '首页', icon: 'desktop', path: '' },
+  { id: 'parking', label: '车位管理', icon: 'desktop', path: 'parking' },
+  { id: 'area', label: '车辆区域', icon: 'flag', path: 'area' },
+  { id: 'charge', label: '收费管理', icon: 'shop', path: 'charge' },
+  { id: 'cartype', label: '类型管理', icon: 'appstore-o', path: 'cartype' },
+  { id: 'user', label: '用户管理', icon: 'user', path: 'user' }
 ]
 
 const requestMenu = () => {

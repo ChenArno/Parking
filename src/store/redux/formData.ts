@@ -6,6 +6,8 @@
  * @LastEditors  : chenArno
  * @LastEditTime : 2020-01-08 15:45:13
  */
+import Storage from '@/utils/Storage.ts'
+let storage: Storage = new Storage()
 enum FormData {
   query = 'query',
   menuIndex = 'menuIndex'
@@ -16,7 +18,7 @@ interface FormDataState {
 }
 
 const formDataState: FormDataState = {
-  path: 'home'
+  path: storage.getValue('menuIndex') ? storage.getValue('menuIndex') : 'home'
 }
 
 export function queryEvent(state = formDataState, action: any) {
@@ -24,6 +26,7 @@ export function queryEvent(state = formDataState, action: any) {
     case FormData.query:
       return { ...state, ...action.val }
     case FormData.menuIndex:
+      storage.setValue('menuIndex', action.val)
       return { ...state, path: action.val }
     default:
       return state

@@ -25,26 +25,9 @@ class BasicRoute extends React.Component {
           return (
             <Route
               key={item.path}
-              exact
+              exact={item.exact}
               path={item.path}
-              component={
-                item.children?.length > 0
-                  ? () => (
-                      <Switch>
-                        {item.children.map((ch: any) => {
-                          return (
-                            <Route
-                              exact
-                              key={ch.name}
-                              path={ch.name}
-                              component={ch.path}
-                            />
-                          )
-                        })}
-                      </Switch>
-                    )
-                  : item.componentName
-              }
+              component={item.componentName}
             ></Route>
           )
         })}

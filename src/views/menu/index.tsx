@@ -45,7 +45,7 @@ class MenuView extends React.Component<any, MenuViewState> {
 
   componentDidMount() {
     this.renderItems()
-    this.props.history.push(this.props.queryEvent.path)
+    this.props.history.push('/' + this.props.queryEvent.path)
   }
 
   renderItems = async () => {
