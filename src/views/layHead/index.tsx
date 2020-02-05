@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Layout, Avatar, Modal } from 'antd'
+import { Layout, Avatar, Modal, Badge, Icon } from 'antd'
 import './index.less'
 import { connect } from 'react-redux'
 import { login, logout } from '@/store/redux/login.ts'
@@ -39,6 +39,9 @@ class LayHead extends React.Component<any, any> {
       <Header className="head">
         <div className="head-title">某智能车位管理系统</div>
         <div className="head-user">
+          <Badge count={0} showZero>
+            <Icon type="bell" className="bell" />
+          </Badge>
           {this.spanElem(isAuth, userName)}
           <span>退出</span>
         </div>

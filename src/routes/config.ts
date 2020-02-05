@@ -54,6 +54,13 @@ const routeConfig = [
       loader: () => import('../views/cartype/index.tsx'),
       loading: Loading
     })
+  }, {
+    path: '/tianqi',
+    exact: true,
+    componentName: Loadable({
+      loader: () => import('../views/other/tianqi.tsx'),
+      loading: Loading
+    })
   }
 ]
 
