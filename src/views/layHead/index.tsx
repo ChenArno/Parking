@@ -3,10 +3,14 @@ import { Layout, Avatar, Modal, Badge, Icon } from 'antd'
 import './index.less'
 import { connect } from 'react-redux'
 import { login, logout } from '@/store/redux/login.ts'
+import { withRouter } from 'react-router'
 const { Header } = Layout
 const { confirm } = Modal
 
 class LayHead extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+  }
   spanElem = (isAuth: boolean, name: string) => {
     if (isAuth) {
       return (
@@ -40,7 +44,9 @@ class LayHead extends React.Component<any, any> {
         <div className="head-title">某智能车位管理系统</div>
         <div className="head-user">
           <Badge count={0} showZero>
-            <Icon type="bell" className="bell" />
+            <Icon type="bell" className="bell" onClick={() => {
+              this.props.history.push('/tianqi')
+            }} />
           </Badge>
           {this.spanElem(isAuth, userName)}
           <span>退出</span>
@@ -66,4 +72,4 @@ function showConfirm(logout: Function) {
 }
 const App = connect(state => state, { login, logout })(LayHead)
 
-export default App
+export default withRouter(App)
