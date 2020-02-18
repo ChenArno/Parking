@@ -2,9 +2,13 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import index from 'views/index.tsx'
 import * as React from 'react'
 import routeConfig from './config.ts'
+import { connect } from 'react-redux'
 import NotFound from '@/views/NotFound.tsx'
 
-class BasicRoute extends React.Component {
+class BasicRoute extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+  }
   render() {
     return (
       // 注意：如果路由 Route 外部包裹 Switch 时，路由匹配到对应的组件后，就不会继续渲染其他组件了。
@@ -16,7 +20,8 @@ class BasicRoute extends React.Component {
           exact
           path="/"
           component={() => {
-            return <Redirect to="/home" />
+            // 控制启动页面时页面的跳转
+            return <Redirect to={`/${this.getDefalut()}`} />
           }}
         >
           {/* 重定向 */}
@@ -57,6 +62,11 @@ class BasicRoute extends React.Component {
       </Switch>
     )
   }
+
+  getDefalut() {
+    const defaultState = this.props.queryEvent.path
+    return defaultState || 'home'
+  }
 }
 
-export default BasicRoute
+export default connect(state => state, {})(BasicRoute)
