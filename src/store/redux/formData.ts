@@ -3,8 +3,8 @@
  * @version: 
  * @Author: chenArno
  * @Date: 2020-01-03 10:40:48
- * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-08 15:45:13
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-19 16:36:35
  */
 import Storage from '@/utils/Storage.ts'
 let storage: Storage = new Storage()
@@ -21,6 +21,7 @@ const formDataState: FormDataState = {
   path: storage.getValue('menuIndex') ? storage.getValue('menuIndex') : 'home'
 }
 
+// reducer是一个纯函数，接收action 和旧的state，生成新的state
 export function queryEvent(state = formDataState, action: any) {
   switch (action.type) {
     case FormData.query:
@@ -33,6 +34,7 @@ export function queryEvent(state = formDataState, action: any) {
   }
 }
 
+// action
 export function query(val: any) {
   return { type: FormData.query, val }
 }
