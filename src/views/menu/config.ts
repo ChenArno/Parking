@@ -3,8 +3,8 @@
  * @version: 
  * @Author: chenArno
  * @Date: 2019-12-26 09:20:38
- * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-08 15:33:34
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-19 13:45:05
  */
 // 这里本来可以直接写 [key:string]: any;
 // 但如果在 key 确定的情况下，可以用 keyof 来获取一个接口的所有 key 组成的联合类型，
@@ -24,7 +24,8 @@ const menusLists: Array<MenuList> = [
   { id: 'area', label: '车辆区域', icon: 'flag', path: 'area' },
   { id: 'charge', label: '收费管理', icon: 'shop', path: 'charge' },
   { id: 'cartype', label: '类型管理', icon: 'appstore-o', path: 'cartype' },
-  { id: 'user', label: '用户管理', icon: 'user', path: 'user' }
+  { id: 'user', label: '用户管理', icon: 'user', path: 'user' },
+  // { id: 'paly', label: '视频播放', icon: 'user', path: 'paly' }
 ]
 
 const requestMenu = () => {

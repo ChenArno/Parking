@@ -3,8 +3,8 @@
  * @version: 
  * @Author: chenArno
  * @Date: 2019-12-25 17:05:07
- * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-16 11:23:59
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-19 13:32:07
  */
 import Loading from '@/components/Loading.tsx'
 import Loadable from 'react-loadable'
@@ -59,6 +59,13 @@ const routeConfig = [
     exact: true,
     componentName: Loadable({
       loader: () => import('../views/other/tianqi.tsx'),
+      loading: Loading
+    })
+  }, {
+    path: '/paly',
+    exact: true,
+    componentName: Loadable({
+      loader: () => import('../views/palyVideo/index.tsx'),
       loading: Loading
     })
   }
