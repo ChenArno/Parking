@@ -2,8 +2,8 @@
  * @Descripttion: 时间转换工具
  * @Author: chenArno
  * @Date: 2020-01-06 16:17:55
- * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-13 10:01:13
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-24 09:44:19
  */
 
 interface Option {
@@ -21,7 +21,7 @@ class DateFormat {
     date = date === undefined ? new Date() : date
     let str: Date = typeof date === 'number' ? new Date(date) : date as Date
     fmt = fmt || 'yyyy-MM-dd HH:mm:ss'
-    if (date instanceof Date) { // 判断时间类型
+    if (str instanceof Date) { // 判断时间类型
       let options: Option = {
         'y': str.getFullYear(),
         'M': str.getMonth() + 1,

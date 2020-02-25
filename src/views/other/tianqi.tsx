@@ -86,7 +86,7 @@ class Tianqi extends React.Component<any, any> {
   getApi() {
     axios
       .get(
-        ' https://www.tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=8YvlPNrz'
+        'https://www.tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=8YvlPNrz'
       )
       .then((res: any) => {
         // console.log(res.data.data)

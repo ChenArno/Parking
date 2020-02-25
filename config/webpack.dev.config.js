@@ -3,8 +3,8 @@
  * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
- * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-27 10:26:38
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-19 16:45:21
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -21,6 +21,7 @@ const webpackDevConfig = merge(common, {
   output: {
     filename: 'js/[name].[hash:8].bundle.js'
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
     open: true,
