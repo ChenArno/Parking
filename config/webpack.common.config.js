@@ -3,8 +3,8 @@
  * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
- * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-23 10:37:51
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-26 13:18:51
  */
 const path = require('path')
 const theme = require('./getTheme')()
@@ -16,11 +16,11 @@ function resolve(dir) {
 
 const vendors = [
   'antd',
-  'react-router-dom'
+  'react-router-dom',
   // 'axios',
   // 'nprogress',
-  // 'react',
-  // 'react-dom',
+  'react',
+  'react-dom'
   // 'react-loadable',
   // 'react-redux',
   // 'react-router',
